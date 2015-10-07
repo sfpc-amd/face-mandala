@@ -3,7 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 
-	ofSetFrameRate(30);
+	ofSetFrameRate(60);
 	ofSetVerticalSync(true);
     ofEnableSmoothing();
     ofSetLogLevel(OF_LOG_VERBOSE);
@@ -13,7 +13,7 @@ void ofApp::setup(){
     showGui = true;
     
     // load our shader
-    lissajousShader.load("shaders/lissajous");
+//    lissajousShader.load("shaders/lissajous");
     
     // setup osc
     cout << "listening for messages on port " << PORT << "\n";
@@ -45,23 +45,38 @@ void ofApp::setup(){
 void ofApp::update(){
     
     // convert mouseIsDown to float value
-    float mouseClick = mouseIsDown ? 1.0 : 0.0;
+//    float mouseClick = mouseIsDown ? 1.0 : 0.0;
     
     // set uniforms for lissajous shader
-    lissajousShader.begin();
-        // mouse position and click state
-        lissajousShader.setUniform4f(
-            "iMouse"
-            , ofMap(facePositionX, 0, FACE_CAM_WIDTH, 0, ofGetWidth())
-            , ofMap(facePositionY, 0, FACE_CAM_HEIGHT, 0, ofGetHeight())
-            , mouseClick
-            , mouseClick
-        );
-        // screen resolution
-        lissajousShader.setUniform3f("iResolution", ofGetWidth(), ofGetHeight(), 0.0); // not sure what third item is?
-        // elapsed time
-        lissajousShader.setUniform1f("iGlobalTime", ofGetElapsedTimef());
-    lissajousShader.end();
+//    lissajousShader.begin();
+//        // mouse position and click state
+//        lissajousShader.setUniform4f(
+//            "iMouse"
+//            , ofMap(facePositionX, 0, FACE_CAM_WIDTH, 0, ofGetWidth())
+//            , ofMap(facePositionY, 0, FACE_CAM_HEIGHT, 0, ofGetHeight())
+//            , mouseClick
+//            , mouseClick
+//        );
+//        // screen resolution
+//        lissajousShader.setUniform3f("iResolution", ofGetWidth(), ofGetHeight(), 0.0); // not sure what third item is?
+//        // elapsed time
+//        lissajousShader.setUniform1f("iGlobalTime", ofGetElapsedTimef());
+//    lissajousShader.end();
+
+
+    ofVec3f euler = ofVec3f(
+        faceOrientationX
+        , faceOrientationY
+        , faceOrientationZ
+    );
+    orientationMatrix.makeRotationMatrix(
+        ofRadToDeg(euler.x)
+        , ofVec3f(1,0,0)
+        , ofRadToDeg(euler.y)
+        , ofVec3f(0,1,0)
+        , ofRadToDeg(euler.z)
+        , ofVec3f(0,0,1)
+    );
 
     if(!manualControl) {
         ofApp::receiveOsc();
@@ -74,12 +89,48 @@ void ofApp::draw(){
     ofSetColor(255);
     
     // draw lissajous shader
-    lissajousShader.begin();
-        ofRect(0, 0, ofGetWidth(), ofGetHeight());
-    lissajousShader.end();
+//    lissajousShader.begin();
+//        ofRect(0, 0, ofGetWidth(), ofGetHeight());
+//    lissajousShader.end();
+    
+
+    float xorig = 0;
+    float yorig = 0;
+    float angle = ofGetElapsedTimef()*3.5;
+	float radius = ofGetHeight()/2;
+    float x = xorig + radius * cos(angle * 3.4);
+	float y = yorig + radius * -sin(angle * 4.7);
+    
+	ofPoint temp;
+	temp.x = x;
+	temp.y = y;
+	points.push_back(temp);
+	if (points.size() > 400){
+		points.erase(points.begin());
+	}
+    
+    ofPushMatrix();
+        ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
+        ofxCv::applyMatrix(orientationMatrix);
+        ofScale(0.15*faceScale, 0.15*faceScale);
+
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        ofSetColor(255,0,127);
+        ofFill();
+        ofCircle(x,y,10);
+        
+        ofSetColor(255,255,255);
+    
+        ofNoFill();
+        ofBeginShape();
+        for (int i = 0; i < points.size(); i++){
+            ofVertex(points[i].x, points[i].y);
+        }
+        ofEndShape();
+    ofPopMatrix();
+ 
     
     // GUI
-    
     if(showGui) {
         gui.setPosition(0, 0);
         gui.draw();

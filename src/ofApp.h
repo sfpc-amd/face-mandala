@@ -4,6 +4,7 @@
 #include "ofxAutoReloadedShader.h"
 #include "ofxGui.h"
 #include "ofxOsc.h"
+#include "ofxCv.h"
 
 #define PORT 8338
 #define FACE_CAM_WIDTH 600
@@ -17,6 +18,9 @@ class ofApp : public ofBaseApp{
         bool mouseIsDown;
         bool showGui;
         bool showHelp;
+    
+		vector < ofPoint > points;
+        ofMatrix4x4 orientationMatrix;
     
         // shaders
         ofxAutoReloadedShader lissajousShader;
