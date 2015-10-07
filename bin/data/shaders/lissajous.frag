@@ -32,10 +32,11 @@ void main()
 	float b = 3.0;
 	float d = iGlobalTime;	// phase
 	
-	if (iMouse.z > 0.0) {
+    // only if mouse is clicked
+	// if (iMouse.z > 0.0) {
 		a = 1.0 + mouse.x*3.0;
 		b = 1.0 + mouse.y*3.0;
-	}
+	// }
 	
 	float m = 1.0;
 	float period = PI*2.0;

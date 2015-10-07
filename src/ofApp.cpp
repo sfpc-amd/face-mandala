@@ -3,18 +3,33 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 
-	ofSetFrameRate(60);
+	ofSetFrameRate(30);
 	ofSetVerticalSync(true);
     ofEnableSmoothing();
     ofSetLogLevel(OF_LOG_VERBOSE);
 
     mouseIsDown = false;
+    
+    // load our shader
     lissajousShader.load("shaders/lissajous");
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
     
+    // convert mouseIsDown to float value
+    float mouseClick = mouseIsDown ? 1.0 : 0.0;
+    
+    // set uniforms for lissajous shader
+    lissajousShader.begin();
+        // mouse position and click state
+        lissajousShader.setUniform4f("iMouse", mouseX, mouseY, mouseClick, mouseClick);
+        // screen resolution
+        lissajousShader.setUniform3f("iResolution", ofGetWidth(), ofGetHeight(), 0.0); // not sure what third item is?
+        // elapsed time
+        lissajousShader.setUniform1f("iGlobalTime", ofGetElapsedTimef());
+    lissajousShader.end();
+
 
 }
 
@@ -23,13 +38,8 @@ void ofApp::draw(){
     ofBackground(0);
     ofSetColor(255);
     
-    float mouseClick = mouseIsDown ? 1.0 : 0.0;
-    
+    // draw lissajous shader
     lissajousShader.begin();
-        lissajousShader.setUniform4f("iMouse", mouseX, mouseY, mouseClick, mouseClick);
-        lissajousShader.setUniform3f("iResolution", ofGetWidth(), ofGetHeight(), 0.0); // not sure what third item is?
-        lissajousShader.setUniform1f("iGlobalTime", ofGetElapsedTimef());
-    
         ofRect(0, 0, ofGetWidth(), ofGetHeight());
     lissajousShader.end();
 }
