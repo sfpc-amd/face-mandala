@@ -3,7 +3,6 @@
 #include "ofMain.h"
 #include "ofxAutoReloadedShader.h"
 #include "ofxGui.h"
-#include "ofxOsc.h"
 #include "ofxCv.h"
 #include "ofxFaceTracker.h"
 
@@ -31,9 +30,6 @@ class ofApp : public ofBaseApp{
         // shaders
         ofxAutoReloadedShader lissajousShader;
         ofxAutoReloadedShader baseShader;
-    
-        // osc
-        ofxOscReceiver receiver;
     
         // gui
         ofxPanel gui;

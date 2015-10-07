@@ -19,7 +19,7 @@ Todo
 - [x] Setup ofxOSC to recieve from FaceOSC
 - [x] Tie in FaceOSC to ofxGUI and shader
 - [x] Replace shader with oF rendered lissajou shape
-- [ ] Incorporate ofxFaceTracker directly (rather than using FaceOSC)
+- [x] Incorporate ofxFaceTracker directly (rather than using FaceOSC)
 - [ ] Explore different compositions for the main figure
 - [ ] Explore vert shaders
 - [ ] Explore frag shaders
