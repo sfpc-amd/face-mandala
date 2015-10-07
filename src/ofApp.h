@@ -2,14 +2,47 @@
 
 #include "ofMain.h"
 #include "ofxAutoReloadedShader.h"
+#include "ofxGui.h"
+
 
 class ofApp : public ofBaseApp{
 
 	public:
     
+        // flags
         bool mouseIsDown;
-        ofShader lissajousShader;
+        bool showGui;
+        bool showHelp;
     
+        // shaders
+        ofxAutoReloadedShader lissajousShader;
+    
+        // gui
+        ofxPanel gui;
+    
+        // face features
+        ofxLabel faceLabel;
+    
+        ofxToggle faceFound;
+    
+        ofxIntSlider faceEyeLeft;
+        ofxIntSlider faceEyeRight;
+        ofxIntSlider faceEyebrowLeft;
+        ofxIntSlider faceEyebrowRight;
+        ofxIntSlider faceJaw;
+        ofxIntSlider faceMouthHeight;
+        ofxIntSlider faceMouthWidth;
+        ofxIntSlider faceNostrils;
+    
+        ofxIntSlider faceOrientationX;
+        ofxIntSlider faceOrientationY;
+        ofxIntSlider faceOrientationZ;
+
+        ofxIntSlider facePositionX;
+        ofxIntSlider facePositionY;
+    
+        ofxIntSlider faceScale;
+
     
 		void setup();
 		void update();

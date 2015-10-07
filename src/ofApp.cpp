@@ -9,9 +9,32 @@ void ofApp::setup(){
     ofSetLogLevel(OF_LOG_VERBOSE);
 
     mouseIsDown = false;
+    showHelp = true;
+    showGui = true;
     
     // load our shader
     lissajousShader.load("shaders/lissajous");
+    
+    // setup gui
+    
+    gui.setup();
+    gui.add(faceLabel.setup("Face Features", ""));
+    gui.add(faceFound.setup("Face Found", false));
+    gui.add(faceEyeLeft.setup("Left Eye", 0, 127, 0));
+    gui.add(faceEyeRight.setup("Right Eye", 0, 127, 0));
+    gui.add(faceEyebrowLeft.setup("Left Eyebrow", 0, 127, 0));
+    gui.add(faceEyebrowRight.setup("Right Eyebrow", 0, 127, 0));
+    gui.add(faceJaw.setup("Jaw", 0, 127, 0));
+    gui.add(faceMouthHeight.setup("Mouth Height", 0, 127, 0));
+    gui.add(faceMouthWidth.setup("Mouth Width", 0, 127, 0));
+    gui.add(faceNostrils.setup("Nostrils", 0, 127, 0));
+    gui.add(faceOrientationX.setup("Face Orientation X", 0, 127, 0));
+    gui.add(faceOrientationY.setup("Face Orientation Y", 0, 127, 0));
+    gui.add(faceOrientationZ.setup("Face Orientation Z", 0, 127, 0));
+    gui.add(facePositionX.setup("Face Position X", 0, 127, 0));
+    gui.add(facePositionY.setup("Face Position Y", 0, 127, 0));
+    gui.add(faceScale.setup("Face Scale", 0, 127, 0));
+
 }
 
 //--------------------------------------------------------------
@@ -42,11 +65,29 @@ void ofApp::draw(){
     lissajousShader.begin();
         ofRect(0, 0, ofGetWidth(), ofGetHeight());
     lissajousShader.end();
+    
+    // GUI
+    
+    if(showGui) {
+        gui.setPosition(0, 0);
+        gui.draw();
+    }
+    
+    if(showHelp) {
+        ofDrawBitmapStringHighlight("h - toggle help / g - toggle GUI", 10, ofGetHeight() - 10);
+    }
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+    switch(key) {
+        case 'h':
+            showHelp = !showHelp;
+            break;
+        case 'g':
+            showGui = !showGui;
+            break;
+    }
 }
 
 //--------------------------------------------------------------
