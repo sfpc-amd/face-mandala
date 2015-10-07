@@ -15,10 +15,6 @@ void ofApp::setup(){
 //     load our shader
     baseShader.load("shaders/base");
     
-    // setup osc
-    cout << "listening for messages on port " << PORT << "\n";
-    receiver.setup(PORT);
-    
 	cam.initGrabber(640, 480);
 	tracker.setup();
     
@@ -108,7 +104,6 @@ void ofApp::draw(){
 	}
     
     baseShader.begin();
-//    ofRect(0, 0, ofGetWidth(), ofGetHeight());
     ofPushMatrix();
         ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
         ofxCv::applyMatrix(orientationMatrix);
@@ -149,79 +144,28 @@ void ofApp::updateFromTracker() {
 	ofMatrix4x4 rotationMatrix;
 
     faceFound = tracker.getFound();
+    faceNostrils = tracker.getGesture(ofxFaceTracker::NOSTRIL_FLARE);
+    faceJaw = tracker.getGesture(ofxFaceTracker::JAW_OPENNESS);
+    faceEyeRight = tracker.getGesture(ofxFaceTracker::RIGHT_EYE_OPENNESS);
+    faceEyeLeft = tracker.getGesture(ofxFaceTracker::LEFT_EYE_OPENNESS);
+    faceEyebrowRight = tracker.getGesture(ofxFaceTracker::RIGHT_EYEBROW_HEIGHT);
+    faceEyebrowLeft = tracker.getGesture(ofxFaceTracker::LEFT_EYEBROW_HEIGHT);
+    faceMouthHeight = tracker.getGesture(ofxFaceTracker::MOUTH_HEIGHT);
+    faceMouthWidth = tracker.getGesture(ofxFaceTracker::MOUTH_WIDTH);
+    
+    orientation = tracker.getOrientation();
+    position = tracker.getPosition();
 
-//    if(a == "/found") {
-//        faceFound = (m.getArgAsInt32(0) > 0) ? true : false;
-//    } else if(a == "/gesture/nostrils") {
-//        faceNostrils = m.getArgAsFloat(0);
-//    } else if(a == "/gesture/jaw") {
-//        faceJaw = m.getArgAsFloat(0);
-//    } else if(a == "/gesture/eye/right") {
-//        faceEyeRight = m.getArgAsFloat(0);
-//    } else if(a == "/gesture/eye/left") {
-//        faceEyeLeft = m.getArgAsFloat(0);
-//    } else if(a == "/gesture/eyebrow/right") {
-//        faceEyebrowRight = m.getArgAsFloat(0);
-//    } else if(a == "/gesture/eyebrow/left") {
-//        faceEyebrowLeft = m.getArgAsFloat(0);
-//    } else if(a == "/gesture/mouth/height") {
-//        faceMouthHeight = m.getArgAsFloat(0);
-//    } else if(a == "/gesture/mouth/width") {
-//        faceMouthWidth = m.getArgAsFloat(0);
-//    } else if(a == "/pose/orientation") {
-//        faceOrientationX = m.getArgAsFloat(0);
-//        faceOrientationY = m.getArgAsFloat(1);
-//        faceOrientationZ = m.getArgAsFloat(2);
-//    } else if(a == "/pose/position") {
-//        facePositionX = m.getArgAsFloat(0);
-//        facePositionY = m.getArgAsFloat(1);
-//    } else if(a == "/pose/scale") {
-//        faceScale = m.getArgAsFloat(0);
-//    }
+    faceOrientationX = orientation.x;
+    faceOrientationY = orientation.y;
+    faceOrientationZ = orientation.z;
+    
+    facePositionX = position.x;
+    facePositionY = position.y;
+    
+    faceScale = tracker.getScale();
 }
 
-
-
-void ofApp::receiveOsc() {
-    while(receiver.hasWaitingMessages()){
-        ofxOscMessage m;
-        receiver.getNextMessage(&m);
-        string a = m.getAddress();
-        
-//        if(m.getArgTypeName(0) == "float" ) {
-//            cout << m.getAddress() << ": " << m.getArgAsFloat(0) << "\n";
-//        }
-
-        if(a == "/found") {
-            faceFound = (m.getArgAsInt32(0) > 0) ? true : false;
-        } else if(a == "/gesture/nostrils") {
-            faceNostrils = m.getArgAsFloat(0);
-        } else if(a == "/gesture/jaw") {
-            faceJaw = m.getArgAsFloat(0);
-        } else if(a == "/gesture/eye/right") {
-            faceEyeRight = m.getArgAsFloat(0);
-        } else if(a == "/gesture/eye/left") {
-            faceEyeLeft = m.getArgAsFloat(0);
-        } else if(a == "/gesture/eyebrow/right") {
-            faceEyebrowRight = m.getArgAsFloat(0);
-        } else if(a == "/gesture/eyebrow/left") {
-            faceEyebrowLeft = m.getArgAsFloat(0);
-        } else if(a == "/gesture/mouth/height") {
-            faceMouthHeight = m.getArgAsFloat(0);
-        } else if(a == "/gesture/mouth/width") {
-            faceMouthWidth = m.getArgAsFloat(0);
-        } else if(a == "/pose/orientation") {
-            faceOrientationX = m.getArgAsFloat(0);
-            faceOrientationY = m.getArgAsFloat(1);
-            faceOrientationZ = m.getArgAsFloat(2);
-        } else if(a == "/pose/position") {
-            facePositionX = m.getArgAsFloat(0);
-            facePositionY = m.getArgAsFloat(1);
-        } else if(a == "/pose/scale") {
-            faceScale = m.getArgAsFloat(0);
-        }
-    }
-}
 
 void ofApp::setupGui() {
    // setup gui
