@@ -14,17 +14,20 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
     
-    lissajousShader.begin();
-        lissajousShader.setUniform2f("iMouse", mouseX, mouseY);
-        lissajousShader.setUniform2f("iResolution", ofGetWidth(), ofGetHeight());
-        lissajousShader.setUniform1f("iGlobalTime", ofGetElapsedTimef());
-    lissajousShader.end();
 
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-//    lissajousShader.draw();
+    ofSetColor(255);
+    
+    lissajousShader.begin();
+        lissajousShader.setUniform2f("iMouse", mouseX, mouseY);
+        lissajousShader.setUniform2f("iResolution", ofGetWidth(), ofGetHeight());
+        lissajousShader.setUniform1f("iGlobalTime", ofGetElapsedTimef());
+    
+        ofRect(0, 0, ofGetWidth(), ofGetHeight());
+    lissajousShader.end();
 }
 
 //--------------------------------------------------------------
@@ -34,7 +37,6 @@ void ofApp::keyPressed(int key){
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-
 }
 
 //--------------------------------------------------------------

@@ -7,7 +7,7 @@ class ofApp : public ofBaseApp{
 
 	public:
     
-        ofxAutoReloadedShader lissajousShader;
+        ofShader lissajousShader;
     
     
 		void setup();

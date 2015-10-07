@@ -162,7 +162,6 @@
 		BC8881B3C8C0A1C45F042E7A /* OscPrintReceivedElements.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = OscPrintReceivedElements.cpp; path = ../../../addons/ofxOsc/libs/oscpack/src/osc/OscPrintReceivedElements.cpp; sourceTree = SOURCE_ROOT; };
 		BE9718AC2BA4516A804EE019 /* CLM.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = CLM.cc; path = ../../../addons/ofxFaceTracker/libs/FaceTracker/src/lib/CLM.cc; sourceTree = SOURCE_ROOT; };
 		C140ACD81BC48B3000F9DC08 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		C140ACDF1BC48E9500F9DC08 /* lissajous.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = lissajous.frag; sourceTree = "<group>"; };
 		C18E5F441BC4928300103E17 /* ofxCv.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxCv.h; sourceTree = "<group>"; };
 		C18E5F461BC4928300103E17 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		C18E5F4A1BC4928300103E17 /* ETF.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ETF.h; sourceTree = "<group>"; };
@@ -194,7 +193,9 @@
 		C18E5F691BC4928300103E17 /* Utilities.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Utilities.cpp; sourceTree = "<group>"; };
 		C18E5F6A1BC4928300103E17 /* Wrappers.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Wrappers.cpp; sourceTree = "<group>"; };
 		C18E5F6B1BC4928300103E17 /* opencv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = opencv.a; path = ../../../addons/ofxCv/../ofxOpenCv/libs/opencv/lib/osx/opencv.a; sourceTree = "<group>"; };
-		C18E5F7B1BC4980500103E17 /* lissajous.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = lissajous.vert; sourceTree = "<group>"; };
+		C18E5F7D1BC49B8E00103E17 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		C18E5F7F1BC49B8E00103E17 /* lissajous.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = lissajous.frag; sourceTree = "<group>"; };
+		C18E5F801BC49B8E00103E17 /* lissajous.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = lissajous.vert; sourceTree = "<group>"; };
 		C2FAC65C491D4231379F3298 /* ofxOscReceiver.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxOscReceiver.cpp; path = ../../../addons/ofxOsc/src/ofxOscReceiver.cpp; sourceTree = SOURCE_ROOT; };
 		C415F439B09BAEBA3FB3710F /* FCheck.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = FCheck.cc; path = ../../../addons/ofxFaceTracker/libs/FaceTracker/src/lib/FCheck.cc; sourceTree = SOURCE_ROOT; };
 		C4F6F873496C3527A28B87F4 /* ExpressionClassifier.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ExpressionClassifier.cpp; path = ../../../addons/ofxFaceTracker/src/ExpressionClassifier.cpp; sourceTree = SOURCE_ROOT; };
@@ -474,23 +475,6 @@
 			name = src;
 			sourceTree = "<group>";
 		};
-		C140ACDD1BC48E9500F9DC08 /* data */ = {
-			isa = PBXGroup;
-			children = (
-				C140ACDE1BC48E9500F9DC08 /* shaders */,
-			);
-			path = data;
-			sourceTree = "<group>";
-		};
-		C140ACDE1BC48E9500F9DC08 /* shaders */ = {
-			isa = PBXGroup;
-			children = (
-				C140ACDF1BC48E9500F9DC08 /* lissajous.frag */,
-				C18E5F7B1BC4980500103E17 /* lissajous.vert */,
-			);
-			path = shaders;
-			sourceTree = "<group>";
-		};
 		C18E5F421BC4928300103E17 /* ofxCv */ = {
 			isa = PBXGroup;
 			children = (
@@ -611,6 +595,25 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		C18E5F7C1BC49B8E00103E17 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				C18E5F7D1BC49B8E00103E17 /* .gitkeep */,
+				C18E5F7E1BC49B8E00103E17 /* shaders */,
+			);
+			name = data;
+			path = bin/data;
+			sourceTree = "<group>";
+		};
+		C18E5F7E1BC49B8E00103E17 /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				C18E5F7F1BC49B8E00103E17 /* lissajous.frag */,
+				C18E5F801BC49B8E00103E17 /* lissajous.vert */,
+			);
+			path = shaders;
+			sourceTree = "<group>";
+		};
 		D27B2221A225CA523C019676 /* src */ = {
 			isa = PBXGroup;
 			children = (
@@ -640,8 +643,8 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
+				C18E5F7C1BC49B8E00103E17 /* data */,
 				C140ACD81BC48B3000F9DC08 /* README.md */,
-				C140ACDD1BC48E9500F9DC08 /* data */,
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4EB6923138AFD0F00A09F29 /* Project.xcconfig */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
