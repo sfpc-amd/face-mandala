@@ -13,7 +13,7 @@ void ofApp::setup(){
     showGui = true;
     
     // load our shader
-//    lissajousShader.load("shaders/lissajous");
+    lissajousShader.load("shaders/lissajous");
     
     // setup osc
     cout << "listening for messages on port " << PORT << "\n";
@@ -35,8 +35,8 @@ void ofApp::setup(){
     gui.add(faceOrientationX.setup("Face Orientation X", 0.0, -1.0, 1.0));
     gui.add(faceOrientationY.setup("Face Orientation Y", 0.0, -1.0, 1.0));
     gui.add(faceOrientationZ.setup("Face Orientation Z", 0.0, -1.0, 1.0));
-    gui.add(facePositionX.setup("Face Position X", 0.0, ofGetWidth(), 0.0));
-    gui.add(facePositionY.setup("Face Position Y", 0.0, ofGetHeight(), 0.0));
+    gui.add(facePositionX.setup("Face Position X", 0.0, 0.0,FACE_CAM_WIDTH));
+    gui.add(facePositionY.setup("Face Position Y", 0.0, 0.0, FACE_CAM_HEIGHT));
     gui.add(faceScale.setup("Face Scale", 0.0, 0.0, 15.0));
 
 }
@@ -45,17 +45,23 @@ void ofApp::setup(){
 void ofApp::update(){
     
     // convert mouseIsDown to float value
-//    float mouseClick = mouseIsDown ? 1.0 : 0.0;
+    float mouseClick = mouseIsDown ? 1.0 : 0.0;
     
     // set uniforms for lissajous shader
-//    lissajousShader.begin();
-//        // mouse position and click state
-//        lissajousShader.setUniform4f("iMouse", mouseX, mouseY, mouseClick, mouseClick);
-//        // screen resolution
-//        lissajousShader.setUniform3f("iResolution", ofGetWidth(), ofGetHeight(), 0.0); // not sure what third item is?
-//        // elapsed time
-//        lissajousShader.setUniform1f("iGlobalTime", ofGetElapsedTimef());
-//    lissajousShader.end();
+    lissajousShader.begin();
+        // mouse position and click state
+        lissajousShader.setUniform4f(
+            "iMouse"
+            , ofMap(facePositionX, 0, FACE_CAM_WIDTH, 0, ofGetWidth())
+            , ofMap(facePositionY, 0, FACE_CAM_HEIGHT, 0, ofGetHeight())
+            , mouseClick
+            , mouseClick
+        );
+        // screen resolution
+        lissajousShader.setUniform3f("iResolution", ofGetWidth(), ofGetHeight(), 0.0); // not sure what third item is?
+        // elapsed time
+        lissajousShader.setUniform1f("iGlobalTime", ofGetElapsedTimef());
+    lissajousShader.end();
 
     if(!manualControl) {
         ofApp::receiveOsc();
@@ -68,9 +74,9 @@ void ofApp::draw(){
     ofSetColor(255);
     
     // draw lissajous shader
-//    lissajousShader.begin();
-//        ofRect(0, 0, ofGetWidth(), ofGetHeight());
-//    lissajousShader.end();
+    lissajousShader.begin();
+        ofRect(0, 0, ofGetWidth(), ofGetHeight());
+    lissajousShader.end();
     
     // GUI
     

@@ -6,6 +6,8 @@
 #include "ofxOsc.h"
 
 #define PORT 8338
+#define FACE_CAM_WIDTH 600
+#define FACE_CAM_HEIGHT 400
 
 class ofApp : public ofBaseApp{
 
