@@ -63,6 +63,7 @@ class ofApp : public ofBaseApp{
 		void draw();
     
         void receiveOsc();
+        void setupGui();
 
 		void keyPressed(int key);
 		void keyReleased(int key);

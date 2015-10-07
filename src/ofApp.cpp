@@ -19,26 +19,7 @@ void ofApp::setup(){
     cout << "listening for messages on port " << PORT << "\n";
     receiver.setup(PORT);
     
-    // setup gui
-    gui.setup();
-    gui.add(manualControl.setup("Manual Control", false));
-    gui.add(faceLabel.setup("Face Features", ""));
-    gui.add(faceFound.setup("Face Found", false));
-    gui.add(faceEyeLeft.setup("Left Eye", 0.0, 0.0, 10.0));
-    gui.add(faceEyeRight.setup("Right Eye", 0.0, 0.0, 10.0));
-    gui.add(faceEyebrowLeft.setup("Left Eyebrow", 0.0, 0.0, 15.0));
-    gui.add(faceEyebrowRight.setup("Right Eyebrow", 0.0, 0.0, 15.0));
-    gui.add(faceJaw.setup("Jaw", 0.0, 0.0, 50.0));
-    gui.add(faceMouthHeight.setup("Mouth Height", 0.0, 0.0, 10.0));
-    gui.add(faceMouthWidth.setup("Mouth Width", 0.0, 0.0, 20.0));
-    gui.add(faceNostrils.setup("Nostrils", 0.0, 0.0, 10.0));
-    gui.add(faceOrientationX.setup("Face Orientation X", 0.0, -1.0, 1.0));
-    gui.add(faceOrientationY.setup("Face Orientation Y", 0.0, -1.0, 1.0));
-    gui.add(faceOrientationZ.setup("Face Orientation Z", 0.0, -1.0, 1.0));
-    gui.add(facePositionX.setup("Face Position X", 0.0, 0.0,FACE_CAM_WIDTH));
-    gui.add(facePositionY.setup("Face Position Y", 0.0, 0.0, FACE_CAM_HEIGHT));
-    gui.add(faceScale.setup("Face Scale", 0.0, 0.0, 15.0));
-
+    ofApp::setupGui();
 }
 
 //--------------------------------------------------------------
@@ -181,6 +162,28 @@ void ofApp::receiveOsc() {
             faceScale = m.getArgAsFloat(0);
         }
     }
+}
+
+void ofApp::setupGui() {
+   // setup gui
+    gui.setup();
+    gui.add(manualControl.setup("Manual Control", false));
+    gui.add(faceLabel.setup("Face Features", ""));
+    gui.add(faceFound.setup("Face Found", false));
+    gui.add(faceEyeLeft.setup("Left Eye", 0.0, 0.0, 10.0));
+    gui.add(faceEyeRight.setup("Right Eye", 0.0, 0.0, 10.0));
+    gui.add(faceEyebrowLeft.setup("Left Eyebrow", 0.0, 0.0, 15.0));
+    gui.add(faceEyebrowRight.setup("Right Eyebrow", 0.0, 0.0, 15.0));
+    gui.add(faceJaw.setup("Jaw", 0.0, 0.0, 50.0));
+    gui.add(faceMouthHeight.setup("Mouth Height", 0.0, 0.0, 10.0));
+    gui.add(faceMouthWidth.setup("Mouth Width", 0.0, 0.0, 20.0));
+    gui.add(faceNostrils.setup("Nostrils", 0.0, 0.0, 10.0));
+    gui.add(faceOrientationX.setup("Face Orientation X", 0.0, -1.0, 1.0));
+    gui.add(faceOrientationY.setup("Face Orientation Y", 0.0, -1.0, 1.0));
+    gui.add(faceOrientationZ.setup("Face Orientation Z", 0.0, -1.0, 1.0));
+    gui.add(facePositionX.setup("Face Position X", 0.0, 0.0,FACE_CAM_WIDTH));
+    gui.add(facePositionY.setup("Face Position Y", 0.0, 0.0, FACE_CAM_HEIGHT));
+    gui.add(faceScale.setup("Face Scale", 0.0, 0.0, 15.0));
 }
 
 //--------------------------------------------------------------
