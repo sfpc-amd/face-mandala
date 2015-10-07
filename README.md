@@ -5,6 +5,12 @@ Facial Mandala
 
 Drawing John/James Whitney-style animations using GL shaders, and manipulating them using `ofxFaceTracker`.
 
+Notes
+-----
+
+ - Maybe frag shader isn't the best way to draw lissajous lines? It's very slooow.
+
+
 Todo
 ----
 
