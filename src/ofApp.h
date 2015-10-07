@@ -1,10 +1,15 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxAutoReloadedShader.h"
 
 class ofApp : public ofBaseApp{
 
 	public:
+    
+        ofxAutoReloadedShader lissajousShader;
+    
+    
 		void setup();
 		void update();
 		void draw();

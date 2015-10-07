@@ -3,16 +3,28 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 
+	ofSetFrameRate(60);
+	ofSetVerticalSync(true);
+    ofEnableSmoothing();
+    ofSetLogLevel(OF_LOG_VERBOSE);
+
+    lissajousShader.load("shaders/lissajous");
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    
+    lissajousShader.begin();
+        lissajousShader.setUniform2f("iMouse", mouseX, mouseY);
+        lissajousShader.setUniform2f("iResolution", ofGetWidth(), ofGetHeight());
+        lissajousShader.setUniform1f("iGlobalTime", ofGetElapsedTimef());
+    lissajousShader.end();
 
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-
+//    lissajousShader.draw();
 }
 
 //--------------------------------------------------------------
