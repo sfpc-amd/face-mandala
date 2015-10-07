@@ -12,8 +12,8 @@ void ofApp::setup(){
     showHelp = true;
     showGui = true;
     
-    // load our shader
-//    lissajousShader.load("shaders/lissajous");
+//     load our shader
+    baseShader.load("shaders/base");
     
     // setup osc
     cout << "listening for messages on port " << PORT << "\n";
@@ -25,25 +25,25 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
     
-    // convert mouseIsDown to float value
-//    float mouseClick = mouseIsDown ? 1.0 : 0.0;
-    
-    // set uniforms for lissajous shader
-//    lissajousShader.begin();
-//        // mouse position and click state
-//        lissajousShader.setUniform4f(
-//            "iMouse"
-//            , ofMap(facePositionX, 0, FACE_CAM_WIDTH, 0, ofGetWidth())
-//            , ofMap(facePositionY, 0, FACE_CAM_HEIGHT, 0, ofGetHeight())
-//            , mouseClick
-//            , mouseClick
-//        );
-//        // screen resolution
-//        lissajousShader.setUniform3f("iResolution", ofGetWidth(), ofGetHeight(), 0.0); // not sure what third item is?
-//        // elapsed time
-//        lissajousShader.setUniform1f("iGlobalTime", ofGetElapsedTimef());
-//    lissajousShader.end();
-
+    baseShader.begin();
+        baseShader.setUniform4f(
+            "iMouse"
+            , ofMap(facePositionX, 0, FACE_CAM_WIDTH, 0, ofGetWidth())
+            , ofMap(facePositionY, 0, FACE_CAM_HEIGHT, 0, ofGetHeight())
+            , (mouseIsDown ? 1.0 : 0.0)
+            , 0.0
+        );
+        baseShader.setUniform3f(
+            "iResolution"
+            , ofGetWidth()
+            , ofGetHeight()
+            , 0.0
+        );        // elapsed time
+        baseShader.setUniform1f(
+            "iGlobalTime"
+            , ofGetElapsedTimef()
+        );
+    baseShader.end();
 
     ofVec3f euler = ofVec3f(
         faceOrientationX
@@ -68,16 +68,10 @@ void ofApp::update(){
 void ofApp::draw(){
     ofBackground(0);
     ofSetColor(255);
-    
-    // draw lissajous shader
-//    lissajousShader.begin();
-//        ofRect(0, 0, ofGetWidth(), ofGetHeight());
-//    lissajousShader.end();
-    
 
     float xorig = 0;
     float yorig = 0;
-    float angle = ofGetElapsedTimef()*3.5;
+    float angle = ofGetElapsedTimef();
 	float radius = ofGetHeight()/2;
     float x = xorig + radius * cos(angle * 3.4);
 	float y = yorig + radius * -sin(angle * 4.7);
@@ -90,6 +84,8 @@ void ofApp::draw(){
 		points.erase(points.begin());
 	}
     
+    baseShader.begin();
+//    ofRect(0, 0, ofGetWidth(), ofGetHeight());
     ofPushMatrix();
         ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
         ofxCv::applyMatrix(orientationMatrix);
@@ -105,11 +101,11 @@ void ofApp::draw(){
         ofNoFill();
         ofBeginShape();
         for (int i = 0; i < points.size(); i++){
-            ofVertex(points[i].x, points[i].y);
+            ofCurveVertex(points[i].x, points[i].y);
         }
         ofEndShape();
     ofPopMatrix();
- 
+    baseShader.end();
     
     // GUI
     if(showGui) {
@@ -183,7 +179,7 @@ void ofApp::setupGui() {
     gui.add(faceOrientationZ.setup("Face Orientation Z", 0.0, -1.0, 1.0));
     gui.add(facePositionX.setup("Face Position X", 0.0, 0.0,FACE_CAM_WIDTH));
     gui.add(facePositionY.setup("Face Position Y", 0.0, 0.0, FACE_CAM_HEIGHT));
-    gui.add(faceScale.setup("Face Scale", 0.0, 0.0, 15.0));
+    gui.add(faceScale.setup("Face Scale", 3.0, 0.0, 15.0));
 }
 
 //--------------------------------------------------------------
