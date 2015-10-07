@@ -51,6 +51,7 @@
 		C18E5F771BC4928300103E17 /* Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C18E5F691BC4928300103E17 /* Utilities.cpp */; };
 		C18E5F781BC4928300103E17 /* Wrappers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C18E5F6A1BC4928300103E17 /* Wrappers.cpp */; };
 		C18E5F791BC4928300103E17 /* opencv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C18E5F6B1BC4928300103E17 /* opencv.a */; };
+		C1F6B3E41BC58FE3007C87BB /* RELEASE.md in Sources */ = {isa = PBXBuildFile; fileRef = C1F6B3E31BC58FE3007C87BB /* RELEASE.md */; };
 		C4782ECC372420ACE0615B74 /* OscPrintReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC8881B3C8C0A1C45F042E7A /* OscPrintReceivedElements.cpp */; };
 		DE44164709810C299EAAB202 /* IO.cc in Sources */ = {isa = PBXBuildFile; fileRef = D0FB15518FE16B361D561235 /* IO.cc */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
@@ -199,6 +200,7 @@
 		C18E5F7F1BC49B8E00103E17 /* lissajous.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = lissajous.frag; sourceTree = "<group>"; };
 		C18E5F801BC49B8E00103E17 /* lissajous.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = lissajous.vert; sourceTree = "<group>"; };
 		C1F6B3E21BC58FA2007C87BB /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = SOURCE_ROOT; };
+		C1F6B3E31BC58FE3007C87BB /* RELEASE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = RELEASE.md; sourceTree = "<group>"; };
 		C2FAC65C491D4231379F3298 /* ofxOscReceiver.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxOscReceiver.cpp; path = ../../../addons/ofxOsc/src/ofxOscReceiver.cpp; sourceTree = SOURCE_ROOT; };
 		C415F439B09BAEBA3FB3710F /* FCheck.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = FCheck.cc; path = ../../../addons/ofxFaceTracker/libs/FaceTracker/src/lib/FCheck.cc; sourceTree = SOURCE_ROOT; };
 		C4F6F873496C3527A28B87F4 /* ExpressionClassifier.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ExpressionClassifier.cpp; path = ../../../addons/ofxFaceTracker/src/ExpressionClassifier.cpp; sourceTree = SOURCE_ROOT; };
@@ -648,6 +650,7 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
+				C1F6B3E31BC58FE3007C87BB /* RELEASE.md */,
 				C18E5F7C1BC49B8E00103E17 /* data */,
 				C140ACD81BC48B3000F9DC08 /* README.md */,
 				C1F6B3E21BC58FA2007C87BB /* VERSION */,
@@ -860,6 +863,7 @@
 				8F5205AEF8861EF234F0651A /* ofxOscSender.cpp in Sources */,
 				ADE367465D2A8EBAD4C7A8D9 /* IpEndpointName.cpp in Sources */,
 				67FE4C7B15C2F0478C8126C2 /* NetworkingUtils.cpp in Sources */,
+				C1F6B3E41BC58FE3007C87BB /* RELEASE.md in Sources */,
 				510CAFE035E576A4E1502D52 /* UdpSocket.cpp in Sources */,
 				A29D8C96AE042ECEAA1BD4F3 /* NetworkingUtilsWin.cpp in Sources */,
 				28090DEB5109115003E8F1C5 /* UdpSocketWin.cpp in Sources */,
