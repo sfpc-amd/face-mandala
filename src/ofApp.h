@@ -3,7 +3,9 @@
 #include "ofMain.h"
 #include "ofxAutoReloadedShader.h"
 #include "ofxGui.h"
+#include "ofxOsc.h"
 
+#define PORT 8338
 
 class ofApp : public ofBaseApp{
 
@@ -17,36 +19,44 @@ class ofApp : public ofBaseApp{
         // shaders
         ofxAutoReloadedShader lissajousShader;
     
+        // osc
+        ofxOscReceiver receiver;
+    
         // gui
         ofxPanel gui;
+    
+        // manual mode
+        ofxToggle manualControl;
     
         // face features
         ofxLabel faceLabel;
     
         ofxToggle faceFound;
     
-        ofxIntSlider faceEyeLeft;
-        ofxIntSlider faceEyeRight;
-        ofxIntSlider faceEyebrowLeft;
-        ofxIntSlider faceEyebrowRight;
-        ofxIntSlider faceJaw;
-        ofxIntSlider faceMouthHeight;
-        ofxIntSlider faceMouthWidth;
-        ofxIntSlider faceNostrils;
+        ofxFloatSlider faceEyeLeft;
+        ofxFloatSlider faceEyeRight;
+        ofxFloatSlider faceEyebrowLeft;
+        ofxFloatSlider faceEyebrowRight;
+        ofxFloatSlider faceJaw;
+        ofxFloatSlider faceMouthHeight;
+        ofxFloatSlider faceMouthWidth;
+        ofxFloatSlider faceNostrils;
     
-        ofxIntSlider faceOrientationX;
-        ofxIntSlider faceOrientationY;
-        ofxIntSlider faceOrientationZ;
+        ofxFloatSlider faceOrientationX;
+        ofxFloatSlider faceOrientationY;
+        ofxFloatSlider faceOrientationZ;
 
-        ofxIntSlider facePositionX;
-        ofxIntSlider facePositionY;
+        ofxFloatSlider facePositionX;
+        ofxFloatSlider facePositionY;
     
-        ofxIntSlider faceScale;
+        ofxFloatSlider faceScale;
 
     
 		void setup();
 		void update();
 		void draw();
+    
+        void receiveOsc();
 
 		void keyPressed(int key);
 		void keyReleased(int key);
