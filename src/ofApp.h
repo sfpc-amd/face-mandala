@@ -25,7 +25,7 @@ class ofApp : public ofBaseApp{
         // shaders
         ofxAutoReloadedShader lissajousShader;
         ofxAutoReloadedShader baseShader;
-        
+    
         // osc
         ofxOscReceiver receiver;
     

@@ -43,6 +43,22 @@ void ofApp::update(){
             "iGlobalTime"
             , ofGetElapsedTimef()
         );
+        baseShader.setUniform1f(
+            "faceEyeLeft"
+            , ofMap(faceEyeLeft, 2.0, 3.0, 0.0, 1.0, true)
+        );
+        baseShader.setUniform1f(
+            "faceEyeRight"
+            , ofMap(faceEyeRight, 2.0, 3.0, 0.0, 1.0, true)
+        );
+        baseShader.setUniform1f(
+            "faceEyebrowLeft"
+            , ofMap(faceEyebrowLeft, 7.0, 9.0, 0.0, 1.0, true)
+        );
+        baseShader.setUniform1f(
+            "faceEyebrowRight"
+            , ofMap(faceEyebrowRight, 7.0, 9.0, 0.0, 1.0, true)
+        );
     baseShader.end();
 
     ofVec3f euler = ofVec3f(
