@@ -8,7 +8,7 @@ Drawing John/James Whitney-style animations using GL shaders, and manipulating t
 Todo
 ----
 
-- [ ] Setup basic lissajous shader https://www.shadertoy.com/view/XdSGzh
+- [x] Setup basic lissajous shader https://www.shadertoy.com/view/XdSGzh
 - [ ] Setup basic ofxGUI to adjust inputs
 - [ ] Setup ofxOSC to recieve from FaceOSC
 - [ ] Tie in FaceOSC to ofxGUI and shader
