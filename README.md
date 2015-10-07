@@ -15,6 +15,6 @@ Todo
 ----
 
 - [x] Setup basic lissajous shader https://www.shadertoy.com/view/XdSGzh
-- [ ] Setup basic ofxGUI to adjust inputs
+- [x] Setup basic ofxGUI to adjust inputs
 - [ ] Setup ofxOSC to recieve from FaceOSC
 - [ ] Tie in FaceOSC to ofxGUI and shader
