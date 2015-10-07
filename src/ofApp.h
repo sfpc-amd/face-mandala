@@ -5,6 +5,8 @@
 #include "ofxGui.h"
 #include "ofxOsc.h"
 #include "ofxCv.h"
+#include "ofxFaceTracker.h"
+
 
 #define PORT 8338
 #define FACE_CAM_WIDTH 600
@@ -21,6 +23,10 @@ class ofApp : public ofBaseApp{
     
 		vector < ofPoint > points;
         ofMatrix4x4 orientationMatrix;
+    
+        // face tracker
+        ofVideoGrabber cam;
+        ofxFaceTracker tracker;
     
         // shaders
         ofxAutoReloadedShader lissajousShader;
@@ -64,6 +70,7 @@ class ofApp : public ofBaseApp{
 		void draw();
     
         void receiveOsc();
+        void updateFromTracker();
         void setupGui();
 
 		void keyPressed(int key);

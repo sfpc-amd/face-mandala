@@ -19,11 +19,22 @@ void ofApp::setup(){
     cout << "listening for messages on port " << PORT << "\n";
     receiver.setup(PORT);
     
+	cam.initGrabber(640, 480);
+	tracker.setup();
+    
     ofApp::setupGui();
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    cam.update();
+    
+	if(cam.isFrameNew()) {
+		tracker.update(ofxCv::toCv(cam));
+        if(!manualControl) {
+            ofApp::updateFromTracker();
+        }
+	}
     
     baseShader.begin();
         baseShader.setUniform4f(
@@ -74,10 +85,6 @@ void ofApp::update(){
         , ofRadToDeg(euler.z)
         , ofVec3f(0,0,1)
     );
-
-    if(!manualControl) {
-        ofApp::receiveOsc();
-    }
 }
 
 //--------------------------------------------------------------
@@ -135,6 +142,46 @@ void ofApp::draw(){
 }
 
 //--------------------------------------------------------------
+void ofApp::updateFromTracker() {
+
+	ofVec2f position;
+	ofVec3f orientation;
+	ofMatrix4x4 rotationMatrix;
+
+    faceFound = tracker.getFound();
+
+//    if(a == "/found") {
+//        faceFound = (m.getArgAsInt32(0) > 0) ? true : false;
+//    } else if(a == "/gesture/nostrils") {
+//        faceNostrils = m.getArgAsFloat(0);
+//    } else if(a == "/gesture/jaw") {
+//        faceJaw = m.getArgAsFloat(0);
+//    } else if(a == "/gesture/eye/right") {
+//        faceEyeRight = m.getArgAsFloat(0);
+//    } else if(a == "/gesture/eye/left") {
+//        faceEyeLeft = m.getArgAsFloat(0);
+//    } else if(a == "/gesture/eyebrow/right") {
+//        faceEyebrowRight = m.getArgAsFloat(0);
+//    } else if(a == "/gesture/eyebrow/left") {
+//        faceEyebrowLeft = m.getArgAsFloat(0);
+//    } else if(a == "/gesture/mouth/height") {
+//        faceMouthHeight = m.getArgAsFloat(0);
+//    } else if(a == "/gesture/mouth/width") {
+//        faceMouthWidth = m.getArgAsFloat(0);
+//    } else if(a == "/pose/orientation") {
+//        faceOrientationX = m.getArgAsFloat(0);
+//        faceOrientationY = m.getArgAsFloat(1);
+//        faceOrientationZ = m.getArgAsFloat(2);
+//    } else if(a == "/pose/position") {
+//        facePositionX = m.getArgAsFloat(0);
+//        facePositionY = m.getArgAsFloat(1);
+//    } else if(a == "/pose/scale") {
+//        faceScale = m.getArgAsFloat(0);
+//    }
+}
+
+
+
 void ofApp::receiveOsc() {
     while(receiver.hasWaitingMessages()){
         ofxOscMessage m;
