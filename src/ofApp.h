@@ -7,6 +7,7 @@ class ofApp : public ofBaseApp{
 
 	public:
     
+        bool mouseIsDown;
         ofShader lissajousShader;
     
     
