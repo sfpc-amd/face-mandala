@@ -8,8 +8,7 @@ Drawing John/James Whitney-style animations using GL shaders, and manipulating t
 Notes
 -----
 
- - Maybe frag shader isn't the best way to draw lissajous lines? It's very slooow.
-
+What is my goal here?
 
 Todo
 ----
